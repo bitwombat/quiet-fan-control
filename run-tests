@@ -1,0 +1,21 @@
+#!/bin/bash
+
+cd test
+
+. framework.sh
+. ../quiet-fan-lib.sh
+
+while true ; do
+    clear
+
+    [[ "${BASH_SOURCE[0]}" == "${0}" ]] || exit 0
+
+    trap got_error ERR EXIT
+
+    # Make linter happy by using STATE here
+    echo $STATE
+
+    . tests.sh
+
+    sleep 2
+done
