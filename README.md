@@ -33,7 +33,6 @@ Saving stdout to a log file is unnecessary.
 ## Configuration
 This is a system utility, thus its configuration isn't friendly or error-proof. Edit the program variables in `quiet-fan` in the DEVICES and CONFIGURATION SETTINGS sections.
 
-settings in
 ## Bugs
 System load is not the same as CPU load, so if the disks are busy, the fan RPMs
 may be kept high unnecessarily.
