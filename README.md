@@ -1,3 +1,5 @@
+![Checks](https://github.com/bitwombat/quiet-fan-control/workflows/Checks/badge.svg?branch=master)
+
 quiet-fan controls a CPU fan using a state machine that ensures the lowest fan
 speed, while keeping your CPU below a desired temperature.
 
