@@ -26,4 +26,4 @@ jobs:
       run: echo Hello, world!
       
     - name: shellcheck
-      uses: ludeeus/action-shellcheck@0.
+      uses: ludeeus/action-shellcheck@0.1.0
