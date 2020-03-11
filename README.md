@@ -20,7 +20,7 @@ for the lowest possible fan RPM that still keeps your CPU below a threshold.
 If your system load is high, it will not test lower RPMs, further reducing fan
 RPM and CPU temperature oscillations.
 
-![state diagram](https://github.com/bitwombat/quiet-fan-control/doc/state.png)
+![state diagram](https://github.com/bitwombat/quiet-fan-control/blob/master/doc/states.png)
 
 ## Installation/usage
 There's probably a proper systemd way of doing this, but this line in
