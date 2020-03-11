@@ -1,0 +1,13 @@
+@startuml
+title Optimal Fan Control
+
+[*] --> Holding
+Holding --> Cooling : Temp exceeded\nmax
+Cooling --> Holding : Temp returned\nbelow max
+Searching --> Cooling : Temp exceeded\nmax
+Searching_Wait --> Searching : Temp didn't\nincrease
+Searching_Wait --> Holding : Temp did increase\n(Found minimum speed)
+Searching --> Searching_Wait
+Holding --> Searching : Hold timeout
+
+@enduml
