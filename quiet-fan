@@ -1,22 +1,19 @@
 #!/bin/bash
 
-#set -x
-
-# Devices
-# There's a temp1 - not sure what it is or why I've set the first one to temp2
-CPU_TEMP_DEVICE_CORE1=/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp2_input
-CPU_TEMP_DEVICE_CORE2=/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp3_input
-CPU_TEMP_DEVICE_CORE3=/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp4_input
-CPU_TEMP_DEVICE_CORE4=/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp5_input
+#--- DEVICES
+CPU_TEMP_DEVICE_CORE1=/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input
+CPU_TEMP_DEVICE_CORE2=/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp2_input
+CPU_TEMP_DEVICE_CORE3=/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp3_input
+CPU_TEMP_DEVICE_CORE4=/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp4_input
 
 FAN_SPEED_DEVICE=/sys/devices/platform/nct6775.656/hwmon/hwmon3/pwm1
+#--- END DEVICES
 
-# Settings
-# Core2 runs 5-10C hotter than the others.  Set to 53C because 50C is achieved
-# under load because of Core2's offset.  Didn't see it get to 53C under load # with cool ambient temps (23C).
-CPU_TEMP_MAX=53
+#--- CONFIGURATION SETTINGS
+# Temperature at which we start ramping up the fan RPMs
+CPU_TEMP_MAX=50
 
-# At 55, Antec's built-in radiator fan stops
+# Fans stop below a certain PWM setting. Make sure this is higher than that.
 FAN_SPEED_MIN=60
 
 # Timeout values for various states' waiting
@@ -25,13 +22,16 @@ HOLDING_TIMEOUT_AFTER_SEARCHING=300
 COOLING_TIMEOUT_WHILE_COOLING=5
 SEARCHING_TIMEOUT_WHILE_SEARCHING=30
 
-# CPU load where we don't try to search lower fan speeds
-# Since bash only does integers, this is 100x the value reported
-# by uptime.  So 80 corresponds to a load of 0.8
+# CPU load below which we'll try to search for lower fan speeds
+# 80 corresponds to a load of 0.8
 CPU_LOAD_THRESHOLD=80
 
-# During searching, how much can the temp go up by before we bail
+# During searching, how much can the temp go up by before we bail?
 ALLOWED_TEMP_INCREASE=3
+#--- END CONFIGURATION SETTINGS
+
+
+#--- MAIN
 
 # Enable PWM
 echo 1 > ${FAN_SPEED_DEVICE}_enable
